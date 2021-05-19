@@ -39,7 +39,17 @@ td:hover {
 
 .timer {
   margin-bottom: 10px;
-  font-size: x-large;
+  font-size: large;
+}
+
+.footer {
+  font-size: large;
+  margin-top: 10%;
+}
+
+input {
+  font-size: xx-large;
+  margin-bottom: 20px;
 }
 
 /*

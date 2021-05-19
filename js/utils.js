@@ -26,7 +26,6 @@ function renderCell(location, value) {
 }
 
 // TODO // #09 Creating an array of nums
-
 function createNumsArr(size) {
   var nums = [];
   for (var i = 1; i <= size; i++) {
@@ -61,9 +60,6 @@ function specialBoard(gBoard) {
   }
   return arr;
 }
-
-/*
-
 
 //////////////////////////////////////////////////////////////////////////
 
