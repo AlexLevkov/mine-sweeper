@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,13 +9,15 @@
   </head>
   <body oncontextmenu="return false" onload="init()">
     <!-- <body onload="init()"> -->
-    <h2>The Mine Sweeperspan <span>😀</span></h2>
+    <h2>The Mine Sweeper<span>😀</span></h2>
     <input type="radio" name="1" onclick="gameLvl(4)" />Beginner
     <input type="radio" name="1" onclick="gameLvl(8)" />Medium
     <input type="radio" name="1" onclick="gameLvl(12)" />Expert
     <div class="timer">TIME: <span>0.0</span></div>
     <table class="board-container"></table>
+    <div><button onclick="resetGame()">TRY AGAIN?</button></div>
     <div class="footer">Alex Levkov</div>
+    <!-- <div class="blink_me">BLINK ME</div> -->
     <script src="js/utils.js"></script>
     <script src="js/app.js"></script>
   </body>
