@@ -49,6 +49,8 @@ function init() {
   elBestScore.innerText = localStorage.lvl1BestScore;
   var elSafeCliksBtn = document.querySelector('.safe-click');
   elSafeCliksBtn.innerText = gSafeClicks;
+   var elBtn = document.querySelector('.manual');
+    elBtn.innerText = `Manual mode`;
 }
 
 // this function is receiving the game level from the player in the DOM
