@@ -50,7 +50,7 @@ function init() {
   var elSafeCliksBtn = document.querySelector('.safe-click');
   elSafeCliksBtn.innerText = gSafeClicks;
    var elBtn = document.querySelector('.manual');
-    elBtn.innerText = `Manual mode`;
+    elBtn.innerText = `Manual Mode`;
 }
 
 // this function is receiving the game level from the player in the DOM
