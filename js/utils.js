@@ -11,7 +11,7 @@ function buildBoard(size) {
             isShown: false,
             isMine: false,
             isMarked: false,
-            isFlaged: false,
+            isFlag: false,
          };
       }
    }

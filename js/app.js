@@ -135,7 +135,7 @@ function renderBoard(mat, selector) {
             className += ' open-cell';
             if (cell.isMine) {
                cellDisplay = '💣';
-            } else if (cell.isFlaged) {
+            } else if (cell.isFlag) {
                cellDisplay = '🚩';
             } else if (cell.minesAroundCount > 0) {
                cellDisplay = cell.minesAroundCount;
@@ -204,12 +204,20 @@ function cellClicked(event, elCell, i, j) {
    }
 
    cell.isShown = true;
+   elCell.classList.remove('clicked')
+
+
 
    // if the cell is a mine calling to gameOver() for possible lose
    // also allowing safe click to be activated
    if (cell.isMine) {
       cell.isShown = true;
-      renderCell({ i, j }, '💣');
+      console.log('cell is mine');
+      if (gLives > 1) {
+         renderCell({ i, j }, FLAG);
+      } else {
+         renderCell({ i, j }, MINE);
+      }
 
       elCell.classList.add('blink_me');
       elCell.style.backgroundColor = 'crimson';
@@ -248,10 +256,13 @@ function cellClicked(event, elCell, i, j) {
       checkVictory(); // maybe the last cell is a mine and the player has enough life for victory
       var elLiveLeft = document.querySelector('.lives');
       elLiveLeft.innerText = ' ' + gLives; // updating the lives on the DOM
-      if (!gLives)
+      if (!gLives) {
          clearTimeout(timeOut)
-      gameOver(); // condition for lose
+         gameOver(); // condition for lose
+
+      }
       return;
+
    } else {
       gIsSafeClick = false;
    }
@@ -284,16 +295,26 @@ function cellMarked(event, elCell, i, j) {
       if (cell.isFlag) {
          // removing flag from cell
          cell.isFlag = false;
-         renderCell({ i, j }, ' ');
+         renderCell({ i, j }, ' ', 'transparent');
          var elCell = document.querySelector(`.cell${i}-${j}`);
-         elCell.style.backgroundColor = 'transparent';
+         // elCell.style.backgroundColor = 'transparent';
+         elCell.classList.add('clicked')
+         console.log('elCell', elCell);
          renderFlags('add-flag')
+         var clone = JSON.parse(JSON.stringify(gBoard));
+         gGameArr.push(clone);
          return;
       } else {
          // putting flag on cell and checking for victory
+         var elCell = document.querySelector(`.cell${i}-${j}`);
+         // elCell.style.backgroundColor = 'transparent';
+         elCell.classList.remove('clicked')
+         console.log('cell wasnt flag');
          cell.isFlag = true;
          renderCell({ i, j }, FLAG);
          renderFlags('remove-flag')
+         var clone = JSON.parse(JSON.stringify(gBoard));
+         gGameArr.push(clone);
          checkVictory();
          return;
       }
@@ -370,6 +391,8 @@ function getFirstClickedCellIdx(coord, coords) {
 // opening an area around a cell with no neighbor mines
 // using recursion
 function OpenArea(rowIdx, colIdx, mat) {
+   var elCell = document.querySelector(`.cell${rowIdx}-${colIdx}`);
+   elCell.classList.remove('clicked')
    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
       if (i < 0 || i > mat.length - 1) continue;
       for (var j = colIdx - 1; j <= colIdx + 1; j++) {
@@ -387,6 +410,8 @@ function OpenArea(rowIdx, colIdx, mat) {
          renderCell({ i, j }, cellDisplay); // updating dom
 
          if (cellDisplay === ' ') {
+            var elCell = document.querySelector(`.cell${i}-${j}`);
+            elCell.classList.remove('clicked')
             OpenArea(i, j, gBoard); // recursion
          }
       }
@@ -486,6 +511,8 @@ function ShowNgsOnHint(mat, rowIdx, colIdx) {
          var cellDisplay = cell.isMine ? '💣' : cell.minesAroundCount;
          renderCell({ i, j }, cellDisplay);
          setTimeForHint(i, j);
+         var elCell = document.querySelector(`.cell${i}-${j}`);
+         elCell.classList.add('clicked')
       }
    }
    return;
@@ -565,7 +592,7 @@ function unDo() {
 
 // allowing the player to click on mine without losing a life
 function safeClick() {
-   if (gSafeClicks <= 0 || !gGame.isOn) {
+   if (gSafeClicks <= 0 || !gGame.isOn || gIsSafeClick) {
       return;
    }
    gIsSafeClick = true;

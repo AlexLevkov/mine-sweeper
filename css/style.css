@@ -74,8 +74,12 @@ td {
 }
 
 td:hover {
-  cursor: pointer;
+  cursor:pointer;
   background-color: dimgray;
+}
+
+.clicked:hover{
+   background-color: dimgray !important;
 }
 
 div button {
