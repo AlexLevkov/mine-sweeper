@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>The Mine Sweeper</title>
+   <link rel="stylesheet" href="css/style.css" />
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚩</text></svg>">
+   <link rel="stylesheet" href="https://unpkg.com/kursor/dist/kursor.css" />
+</head>
+
+<!-- <body oncontextmenu="return false" onload="init()"> -->
+
+<body onload="init();removeRightClick()">
+   <div class="upper-menu">
+      <h2>The Mine Sweeper<span class="smiley" onclick="resetGame()"></span> </h2>
+      <div class='div-best'>Best Score: <span class="best-score"></span></h2>
+      <div class="game-tutorial"></div>
+         </div>
+      
+         <input class="level"  id="game-level" type="radio" name="game-level" onclick="tutorial(1)" /> </input>
+         <label class="level" id="game-level" for="game-level"> Tutorial </label>
+      
+         <input class="level" id="game-level-1" type="radio" name="game-level" onclick="gameLvl(4)" /> </input>
+         <label class="level" id="game-level-1" for="game-level-1">Beginner </label>
+      
+         <input class="level" id="game-level-2" type="radio" name="game-level" onclick="gameLvl(8)" /> </input>
+         <label class="level" id="game-level-2" for="game-level-2">Medium </label>
+      
+         <input class="level" id="game-level-3" type="radio" name="game-level" onclick="gameLvl(12)" /> </input>
+         <label class="level" id="game-level-2" for="game-level-3">Expert </label>
+      
+         <div>
+         <button class="bubbly-button new-game-btn" onclick="resetGame()">New Game</button>
+         <button class="bubbly-button undo-btn" onclick="unDo()" title="Take one step back'">Undo</button>
+      </div>
+      <div>
+         <button class="bubbly-button safe-btn" onclick="safeClick()" title="Click without losing lives">Safe Clicks: <span
+               class="safe-click">
+            </span></button>
+         <button class="bubbly-button manual-btn" onclick="activatePlayerPutMines()" title="Place the mines yourself">Manual
+            Mode
+            </span></button>
+      </div>
+      <div class="timer">
+         Time: <span>00:00 </span> | <span class="game-lives" title="Lives left before end game">Lives:<span class="lives">
+               ❤️</span> </span>
+         <span class="hint" onclick="hintOn()">| Hints:
+            ❔❔❔</span> | <span class="Flags"></span>
+      </div>
+
+   </div>
+
+
+   <div class="main-table">
+      <div class="game-status">1</div>
+      <table class="board-container"></table>
+
+   </div>
+
+
+   <div class="footer">The Mine Sweeper 2022 Ⓒ</div>
+</body>
+   <script src="js/utils.js"></script>
+   <script src="js/app.js"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/kursor@0.0.14/dist/kursor.js"></script> -->
+   <script src="https://unpkg.com/kursor"></script>
+   <script>
+      new kursor({
+          type:1,
+          removeDefaultCursor: true,
+          color:'#ffffff',
+         //  el: '.board-container',
+       
+      })
+  </script>
+
+</html>
+
+
+
+
+
