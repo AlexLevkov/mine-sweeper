@@ -5,7 +5,7 @@ body {
   color: white;
   font-size: 20;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom, black 20%, teal 70%);
+  background: linear-gradient(to bottom, #000083  20%, teal 70%);
   word-wrap: break-word;
   align-content: baseline;
   outline:none;   
